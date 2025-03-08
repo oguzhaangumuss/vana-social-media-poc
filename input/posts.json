@@ -1,0 +1,120 @@
+[
+  {
+    "post_id": "post98765",
+    "user_id": "user123456",
+    "platform": "X",
+    "post_url": "https://x.com/socialmedia_user/status/123456789",
+    "content": "Just discovered an amazing new app for productivity #productivity #tech #apps",
+    "posted_at": "2023-12-15T10:23:45Z",
+    "media": [
+      {
+        "type": "image",
+        "url": "https://example.com/media/image12345.jpg",
+        "alt_text": "Screenshot of the productivity app"
+      }
+    ],
+    "hashtags": ["productivity", "tech", "apps"],
+    "mentions": [],
+    "location": "Istanbul, Turkey",
+    "engagement": {
+      "likes": 87,
+      "comments": 12,
+      "shares": 5,
+      "views": 1250,
+      "saves": 23
+    }
+  },
+  {
+    "post_id": "post98764",
+    "user_id": "user123456",
+    "platform": "X",
+    "post_url": "https://x.com/socialmedia_user/status/123456788",
+    "content": "Working on integrating blockchain with social media data. The potential for decentralized content ownership is fascinating! #blockchain #web3 #datanft",
+    "posted_at": "2023-12-10T15:40:23Z",
+    "media": [],
+    "hashtags": ["blockchain", "web3", "datanft"],
+    "mentions": ["@crypto_innovator", "@web3_community"],
+    "location": null,
+    "engagement": {
+      "likes": 156,
+      "comments": 32,
+      "shares": 28,
+      "views": 3200,
+      "saves": 47
+    }
+  },
+  {
+    "post_id": "post98763",
+    "user_id": "user123456",
+    "platform": "X",
+    "post_url": "https://x.com/socialmedia_user/status/123456787",
+    "content": "Beautiful sunset today! Sometimes you need to take a moment to appreciate nature.",
+    "posted_at": "2023-12-05T17:12:09Z",
+    "media": [
+      {
+        "type": "image",
+        "url": "https://example.com/media/sunset12345.jpg",
+        "alt_text": "Sunset over the city skyline"
+      },
+      {
+        "type": "image",
+        "url": "https://example.com/media/sunset12346.jpg",
+        "alt_text": "Close-up of sunset colors"
+      }
+    ],
+    "hashtags": ["sunset", "nature", "mindfulness"],
+    "mentions": [],
+    "location": "Bebek, Istanbul",
+    "engagement": {
+      "likes": 241,
+      "comments": 22,
+      "shares": 8,
+      "views": 3750,
+      "saves": 37
+    }
+  },
+  {
+    "post_id": "post98762",
+    "user_id": "user123456",
+    "platform": "X",
+    "post_url": "https://x.com/socialmedia_user/status/123456786",
+    "content": "Excited to announce I'll be speaking at the Web3 Istanbul Conference next month about Data NFTs and content ownership! #web3istanbul #speaking #blockchain",
+    "posted_at": "2023-11-28T09:05:17Z",
+    "media": [
+      {
+        "type": "image",
+        "url": "https://example.com/media/conference_flyer.jpg",
+        "alt_text": "Conference promotional flyer"
+      }
+    ],
+    "hashtags": ["web3istanbul", "speaking", "blockchain"],
+    "mentions": ["@web3_istanbul", "@blockchain_turkey"],
+    "location": "Istanbul, Turkey",
+    "engagement": {
+      "likes": 312,
+      "comments": 64,
+      "shares": 52,
+      "views": 5890,
+      "saves": 93
+    }
+  },
+  {
+    "post_id": "post98761",
+    "user_id": "user123456",
+    "platform": "X",
+    "post_url": "https://x.com/socialmedia_user/status/123456785",
+    "content": "Just published my article about how blockchain can revolutionize content creation and ownership. Check it out! https://medium.com/@socialmedia_user/blockchain-content-revolution",
+    "posted_at": "2023-11-20T14:30:00Z",
+    "media": [],
+    "hashtags": ["blockchain", "content", "article"],
+    "mentions": [],
+    "location": null,
+    "engagement": {
+      "likes": 178,
+      "comments": 23,
+      "shares": 41,
+      "views": 4200,
+      "saves": 85
+    }
+  }
+]

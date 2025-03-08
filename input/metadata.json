@@ -1,0 +1,31 @@
+{
+  "dataset_id": "social_media_12345",
+  "dlp_id": 12345,
+  "dataset_name": "Social Media Activity Dataset",
+  "dataset_description": "Collection of social media posts and account information from X platform",
+  "dataset_owner_id": "user123456",
+  "dataset_owner_email": "user@example.com",
+  "creation_timestamp": "2023-12-18T10:00:00Z",
+  "dataset_contents": {
+    "account_info": true,
+    "posts": true
+  },
+  "dataset_stats": {
+    "total_posts": 5,
+    "platforms": ["X"],
+    "date_range": {
+      "start": "2023-11-20T14:30:00Z",
+      "end": "2023-12-15T10:23:45Z"
+    },
+    "content_summary": {
+      "total_engagement": 1286,
+      "total_views": 18290,
+      "media_items": 4
+    }
+  },
+  "consent_info": {
+    "data_usage_agreed": true,
+    "consent_timestamp": "2023-12-18T09:58:12Z",
+    "consent_version": "1.0"
+  }
+}
