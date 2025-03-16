@@ -1,0 +1,95 @@
+[
+  {
+    "post_id": "ref_post001",
+    "user_id": "other_user001",
+    "platform": "X",
+    "post_url": "https://x.com/other_user/status/991234567",
+    "content": "Excited to share my thoughts on blockchain technology and how it's changing the world of finance! #blockchain #crypto",
+    "posted_at": "2023-11-15T08:22:15Z",
+    "media": [
+      {
+        "type": "image",
+        "url": "https://example.com/media/blockchain_img.jpg",
+        "alt_text": "Blockchain diagram"
+      }
+    ],
+    "engagement": {
+      "likes": 342,
+      "comments": 45,
+      "shares": 87,
+      "views": 5200
+    }
+  },
+  {
+    "post_id": "ref_post002",
+    "user_id": "other_user002",
+    "platform": "X",
+    "post_url": "https://x.com/other_user2/status/882345678",
+    "content": "Just finished a great session on web3 development. So much potential in decentralized applications! #web3 #dapps #developer",
+    "posted_at": "2023-11-18T14:05:33Z",
+    "media": [],
+    "engagement": {
+      "likes": 120,
+      "comments": 12,
+      "shares": 8,
+      "views": 2100
+    }
+  },
+  {
+    "post_id": "ref_post003",
+    "user_id": "other_user003",
+    "platform": "X",
+    "post_url": "https://x.com/other_user3/status/773456789",
+    "content": "Working on integrating blockchain with social media data. The potential for decentralized content ownership is fascinating!",
+    "posted_at": "2023-11-25T11:30:42Z",
+    "media": [
+      {
+        "type": "image",
+        "url": "https://example.com/media/development_screenshot.jpg",
+        "alt_text": "Code screenshot"
+      }
+    ],
+    "engagement": {
+      "likes": 56,
+      "comments": 8,
+      "shares": 4,
+      "views": 980
+    }
+  },
+  {
+    "post_id": "ref_post004",
+    "user_id": "other_user004",
+    "platform": "X",
+    "post_url": "https://x.com/other_user4/status/664567890",
+    "content": "Data sovereignty should be a fundamental right. Your personal data should belong to you, not corporations. #dataprivacy #web3",
+    "posted_at": "2023-12-02T09:45:11Z",
+    "media": [],
+    "engagement": {
+      "likes": 421,
+      "comments": 67,
+      "shares": 142,
+      "views": 8300
+    }
+  },
+  {
+    "post_id": "ref_post005",
+    "user_id": "other_user005",
+    "platform": "X",
+    "post_url": "https://x.com/other_user5/status/555678901",
+    "content": "Attended a great workshop on NFTs today. Amazing how digital ownership can transform creative industries! #NFT #digitalart",
+    "posted_at": "2023-12-08T16:20:55Z",
+    "media": [
+      {
+        "type": "image",
+        "url": "https://example.com/media/nft_artwork.jpg",
+        "alt_text": "Digital artwork"
+      }
+    ],
+    "engagement": {
+      "likes": 194,
+      "comments": 23,
+      "shares": 35,
+      "views": 3600
+    }
+  }
+]

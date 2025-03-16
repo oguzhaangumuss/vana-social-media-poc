@@ -277,6 +277,172 @@ class Proof:
         
         return time_score, attributes
 
+    def verify_uniqueness(self, posts_data):
+        """
+        Verify the uniqueness of posts by comparing with existing data
+        Returns a uniqueness score between 0 and 1 and attributes dict
+        """
+        # Initialize metrics
+        total_posts = len(posts_data)
+        if total_posts == 0:
+            return 0.0, {"uniqueness_score": 0}
+            
+        # In a real-world implementation, we would:
+        # 1. Load existing posts from the DLP (Data Liquidity Pool)
+        # 2. Compare new posts with existing posts using advanced similarity algorithms
+        
+        # For this implementation, we'll create a simulated approach that:
+        # - Checks for content similarity using basic text comparison
+        # - Checks for temporal uniqueness (post timing patterns)
+        # - Assigns higher uniqueness to posts with unique media
+        
+        # Simulate a reference dataset
+        # In production, this would be fetched from IPFS, a database, or other storage
+        reference_posts = self._load_reference_data()
+        
+        # Track metrics
+        content_uniqueness_scores = []
+        media_uniqueness_scores = []
+        
+        # Check each post for uniqueness
+        for post in posts_data:
+            post_content = post.get("content", "")
+            post_media = post.get("media", [])
+            
+            # 1. Content Uniqueness - Using simple text comparison
+            # In production, use semantic text embeddings (NLP)
+            content_similarity = self._compute_content_similarity(post_content, reference_posts)
+            content_uniqueness = 1.0 - content_similarity  # Invert (1.0 = completely unique)
+            content_uniqueness_scores.append(content_uniqueness)
+            
+            # 2. Media Uniqueness - Using media presence as proxy
+            # In production, use perceptual hashing for images
+            if reference_posts:
+                media_similarity = self._compute_media_similarity(post_media, reference_posts)
+                media_uniqueness = 1.0 - media_similarity
+            else:
+                media_uniqueness = 1.0  # If no reference, assume unique
+                
+            media_uniqueness_scores.append(media_uniqueness)
+            
+        # Calculate overall uniqueness (average of content and media uniqueness)
+        avg_content_uniqueness = sum(content_uniqueness_scores) / total_posts if content_uniqueness_scores else 1.0
+        avg_media_uniqueness = sum(media_uniqueness_scores) / total_posts if media_uniqueness_scores else 1.0
+        
+        # Final weighted uniqueness score
+        uniqueness_score = (0.7 * avg_content_uniqueness) + (0.3 * avg_media_uniqueness)
+        
+        # Add attributes for detailed reporting
+        attributes = {
+            "content_uniqueness": avg_content_uniqueness * 100,
+            "media_uniqueness": avg_media_uniqueness * 100,
+            "uniqueness_score": uniqueness_score * 100
+        }
+        
+        logging.info(f"Uniqueness verification: {uniqueness_score:.2f}")
+        return uniqueness_score, attributes
+        
+    def _load_reference_data(self):
+        """
+        Load reference data to compare against
+        In production, this would load from a database, IPFS, or other storage
+        """
+        # Reference data path can be configured or defaulted
+        reference_path = self.config.get('reference_data_path', None)
+        
+        if reference_path and os.path.exists(reference_path):
+            return self._load_json(reference_path)
+            
+        # Fallback: check for a reference.json in the input directory
+        reference_file = os.path.join(self.input_dir, "reference.json")
+        if os.path.exists(reference_file):
+            return self._load_json(reference_file)
+            
+        # If no reference data is available, return empty list
+        return []
+        
+    def _compute_content_similarity(self, content, reference_posts):
+        """
+        Compute content similarity between a post and reference posts
+        Returns similarity score between 0 and 1
+        
+        In production, use:
+        - Text embeddings (sentence-transformers)
+        - Cosine similarity
+        - Duplicate detection algorithms
+        """
+        if not reference_posts or not content:
+            return 0.0  # No similarity if nothing to compare
+            
+        # Simple similarity measure based on text overlap
+        # This is a basic implementation - in production use NLP techniques
+        
+        # Normalize content
+        content = content.lower()
+        
+        # Check similarity with each reference post
+        max_similarity = 0.0
+        
+        for ref_post in reference_posts:
+            ref_content = ref_post.get("content", "").lower()
+            
+            if not ref_content:
+                continue
+                
+            # Very basic similarity: shared word count / total word count
+            content_words = set(content.split())
+            ref_words = set(ref_content.split())
+            
+            if not content_words or not ref_words:
+                continue
+                
+            shared_words = content_words.intersection(ref_words)
+            similarity = len(shared_words) / max(len(content_words), len(ref_words))
+            
+            # Track the highest similarity found
+            max_similarity = max(max_similarity, similarity)
+            
+        return max_similarity
+        
+    def _compute_media_similarity(self, media, reference_posts):
+        """
+        Compute media similarity between a post's media and reference posts
+        Returns similarity score between 0 and 1
+        
+        In production, use:
+        - Perceptual image hashing
+        - Video fingerprinting
+        - Audio fingerprinting
+        """
+        if not reference_posts or not media:
+            return 0.0  # No similarity if nothing to compare
+            
+        # Simple implementation - check if media URLs match
+        # In production, use perceptual hashing to compare actual media content
+        
+        # Extract media URLs from the current post
+        media_urls = [item.get("url", "") for item in media]
+        
+        # Check for matches in reference posts
+        media_match_count = 0
+        
+        for ref_post in reference_posts:
+            ref_media = ref_post.get("media", [])
+            
+            for ref_item in ref_media:
+                ref_url = ref_item.get("url", "")
+                
+                # Check if URLs match (basic check)
+                if ref_url in media_urls:
+                    media_match_count += 1
+                    
+        # Calculate similarity based on matches
+        if not media_urls:
+            return 0.0
+            
+        similarity = min(1.0, media_match_count / len(media_urls))
+        return similarity
+
     def generate(self) -> ProofResponse:
         """Generate proof and return it"""
         logging.info("Starting proof generation")
@@ -303,26 +469,36 @@ class Proof:
             # Verify time consistency
             time_score, time_attrs = self.verify_time_consistency(posts_data)
             
+            # Verify uniqueness
+            uniqueness_score, uniqueness_attrs = self.verify_uniqueness(posts_data)
+            
             # Combine attributes
-            attributes = {**ownership_attrs, **quality_attrs, **authenticity_attrs, **time_attrs}
+            attributes = {**ownership_attrs, **quality_attrs, **authenticity_attrs, **time_attrs, **uniqueness_attrs}
             self.proof_response.attributes = attributes
             
             # Calculate overall score (weighted average)
             self.proof_response.ownership = ownership_score
             self.proof_response.quality = quality_score
+            self.proof_response.uniqueness = uniqueness_score
             
             # Authenticity now includes time consistency as part of its score
             self.proof_response.authenticity = (authenticity_score + time_score) / 2  
             
-            # Overall weighted score: 40% ownership, 30% quality, 30% combined authenticity
-            self.proof_response.score = (0.4 * ownership_score) + (0.3 * quality_score) + (0.3 * self.proof_response.authenticity)
+            # Overall weighted score: 35% ownership, 25% quality, 25% authenticity, 15% uniqueness
+            self.proof_response.score = (
+                0.35 * ownership_score + 
+                0.25 * quality_score + 
+                0.25 * self.proof_response.authenticity +
+                0.15 * uniqueness_score
+            )
             
             # Determine if proof is valid (minimum thresholds)
             self.proof_response.valid = (
                 ownership_score >= 0.7 and
                 quality_score >= 0.5 and
                 authenticity_score >= 0.9 and  # Strict threshold for URL authenticity
-                time_score >= 0.8  # Strict threshold for time consistency
+                time_score >= 0.8 and  # Strict threshold for time consistency
+                uniqueness_score >= 0.6  # Moderate threshold for uniqueness
             )
             
             # Set metadata
